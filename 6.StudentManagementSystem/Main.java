@@ -4,8 +4,8 @@ public class Main {
         //** this is a simple main class to test the classes, you can make a complete student management system with this classes if you want **//
     
         Admin admin = new Admin();
-        Student student1 = new Student("Alice", 101);
-        Student student2 = new Student("Bob", 102);
+        Student student1 = new Student("Kourosh", 101);
+        Student student2 = new Student("Ali", 102);
 
         Course math = new Course("Mathematics");
         Course history = new Course("History");
