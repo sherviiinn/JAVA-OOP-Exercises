@@ -10,8 +10,8 @@ public class Main {
         admin.addCourt(basketballCourt);
         admin.addCourt(tennisCourt);
         
-        Player player1 = new Player("John");
-        Player player2 = new Player("Alice");
+        Player player1 = new Player("Kourosh");
+        Player player2 = new Player("Ali");
         
         player1.bookCourt(basketballCourt);
         player2.bookCourt(basketballCourt); // Should print "Court is already booked!"
