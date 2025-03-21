@@ -1,3 +1,4 @@
+package app;
 public class Visitor {
     private String name;
 

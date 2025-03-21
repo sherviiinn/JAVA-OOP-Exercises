@@ -1,3 +1,5 @@
+package app;
+
 public class VIPVisitor extends Visitor {
     public VIPVisitor(String name) {
         super(name);
