@@ -10,6 +10,13 @@ public class Court {
     public String getCourtname() {
         return courtname;
     }
+    public void show(){
+        for(int i=0; i<5; i++){
+            if(isAvailable(i)){
+                System.out.println("Court " + courtname + " is on the time of " + i*2+1 +"-" +(i+1)*2+1 + "is available" );
+            }
+        }
+    }
     public void bookCourt(int clock) {
         if(time[clock]){
             time[clock] = false;
