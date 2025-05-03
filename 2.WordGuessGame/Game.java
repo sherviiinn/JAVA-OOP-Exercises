@@ -6,10 +6,10 @@ public class Game {
     private final StringBuilder answer = new StringBuilder();
     Scanner sc = new Scanner(System.in);
     public void menu(){
-        System.out.println("=== Welcome to Word Guess Game ===\n\n");
+        System.out.println("=== Welcome to Word Guess Game ===");
         System.out.println("""
                 1.Choose a Random Word
-                2.Select a Random Word
+                2.Enter a Word
                 """);
         int choice = sc.nextInt();
         sc.nextLine();
@@ -31,7 +31,7 @@ public class Game {
         initstring();
         int wrongguess = 0;
         System.out.println("---------------------------------------------------");
-        while(wrongguess != 6 || !word.equals(answer) ){
+        while(wrongguess != 5 && !word.getWord().contentEquals(answer) ){
             printman(wrongguess);
             System.out.println("Enter a word: ");
             char guess = sc.nextLine().charAt(0);//ارور براش بزارم تا درست وارد کنه کاربر
@@ -42,82 +42,89 @@ public class Game {
                 System.out.println("Correct");
             }
         }
-        if(word.equals(answer)){
+        if(word.getWord().contentEquals(answer)){
+            printman(wrongguess);
             System.out.println("Congratulations! You won!");
         }else{
+            printman(wrongguess);
             System.out.println("Sorry, you lost!");
         }
-
     }
     public void printman(int x){
         switch (x) {
             case 0 : {
-                System.out.println("""
+                System.out.print("""
                          __
                         |  |
-                        |  O    Word =\s""" );
+                        |  O    Word = """ );
                 System.out.print(answer);
-                System.out.print("""
+                System.out.println("""
+                        
                         |
                         |
                         """);
             }
             break;
             case 1 : {
-                System.out.println("""
+                System.out.print("""
                          __
                         |  |
-                        |  O    Word =\s""" );
+                        |  O    Word = """ );
                 System.out.print(answer);
-                System.out.print("""
-                        | /  
-                        |
-                        """);
+                System.out.println("""
+                         
+                       | / \s
+                       |
+                       \s""");
             }
             break;
             case 2 : {
-                System.out.println("""
+                System.out.print("""
                          __
                         |  |
-                        |  O    Word =\s""" );
+                        |  O    Word = \s""" );
                 System.out.print(answer);
-                System.out.print("""
+                System.out.println("""
+                        
                         | /|
                         |
                         """);
             }
             break;
             case 3 : {
-                System.out.println("""
+                System.out.print("""
                          __
                         |  |
-                        |  O    Word =\s""" );
+                        |  O    Word = \s""" );
                 System.out.print(answer);
-                System.out.print("""
+                System.out.println("""
+                        
                         | /|\\
                         |
                         """);
             }
             break;
             case 4 : {
-                System.out.println("""
+                System.out.print("""
                          __
                         |  |
-                        |  O    Word =\s""" );
+                        |  O    Word = \s""" );
                 System.out.print(answer);
-                System.out.print("""
+                System.out.println("""
+                        
                         | /|\\
                         | /
                         """);
             }
             break;
             case 5 : {
-                System.out.println("""
+                System.out.print("""
                          __
                         |  |
-                        |  O    Word =\s""" );
+                        |  O    Word = \s""" );
                 System.out.print(answer);
-                System.out.print("""
+                System.out.println("""
+                        
                         | /|\\
                         | / \\
                         """);
