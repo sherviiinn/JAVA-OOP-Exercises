@@ -1,5 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Game {
     private final String[] words = {"java", "python", "programming", "developer", "object"};
     private final Word word = new Word();
@@ -9,8 +12,8 @@ public class Game {
         System.out.println("=== Welcome to Word Guess Game ===");
         System.out.println("""
                 1.Choose a Random Word
-                2.Enter a Word
-                """);
+                2.Enter a Word""")
+                ;
         int choice = sc.nextInt();
         sc.nextLine();
         switch (choice) {
@@ -35,6 +38,14 @@ public class Game {
             printman(wrongguess);
             System.out.println("Enter a word: ");
             char guess = sc.nextLine().charAt(0);//ارور براش بزارم تا درست وارد کنه کاربر
+            while(!validguess(guess)){
+                System.out.print("Invalid guess\nTry again: ");
+                guess = sc.nextLine().charAt(0);
+            }
+            if (duplicate(guess)){
+                System.out.print("You cannot have duplicate word!");
+                wrongguess++;
+            }
             if(!check(guess)) {
                 System.out.println("Wrong guess");
                 wrongguess++;
@@ -132,9 +143,7 @@ public class Game {
         }
     }
     public void initstring(){
-        for (int i = 0; i < word.wordlength(); i++) {
-            answer.append("-");
-        }
+        answer.append("-".repeat(Math.max(0, word.wordlength())));
     }
     public boolean check(char guess){
         boolean correct = false;
@@ -145,5 +154,16 @@ public class Game {
         }
     }
     return correct;
+    }
+    public boolean validguess(char guess){
+        return guess >= 'a' && guess <= 'z' || guess >= 'A' && guess <= 'Z';
+    }
+    public boolean duplicate(char guess){
+        boolean duplicate = false;
+        for (int i = 0; i < answer.length(); i++) {
+            if( answer.charAt(i) == guess)
+                duplicate = true;
+        }
+        return duplicate;
     }
 }
