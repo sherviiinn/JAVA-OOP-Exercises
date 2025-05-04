@@ -33,18 +33,18 @@ public class Game {
     public void start(){
         initstring();
         int wrongguess = 0;
-        System.out.println("---------------------------------------------------");
         while(wrongguess != 5 && !word.getWord().contentEquals(answer) ){
             printman(wrongguess);
             System.out.println("Enter a word: ");
-            char guess = sc.nextLine().charAt(0);//ارور براش بزارم تا درست وارد کنه کاربر
+            char guess = sc.nextLine().charAt(0);
             while(!validguess(guess)){
                 System.out.print("Invalid guess\nTry again: ");
                 guess = sc.nextLine().charAt(0);
             }
             if (duplicate(guess)){
-                System.out.print("You cannot have duplicate word!");
+                System.out.println("You cannot have duplicate word!");
                 wrongguess++;
+                continue;
             }
             if(!check(guess)) {
                 System.out.println("Wrong guess");
@@ -80,10 +80,10 @@ public class Game {
                 System.out.print("""
                          __
                         |  |
-                        |  O    Word = """ );
+                        |  O    Word =\s""" );
                 System.out.print(answer);
                 System.out.println("""
-                         
+                        \s
                        | / \s
                        |
                        \s""");
