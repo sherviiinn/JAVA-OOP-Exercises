@@ -1,8 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Game {
     private final String[] words = {"java", "python", "programming", "developer", "object"};
     private final Word word = new Word();
@@ -11,17 +8,24 @@ public class Game {
     public void menu(){
         System.out.println("=== Welcome to Word Guess Game ===");
         System.out.println("""
-                1.Choose a Random Word
-                2.Enter a Word""")
-                ;
+            1.Choose a Random Word
+            2.Enter a Word
+            3.Two Player Mode""");
         int choice = sc.nextInt();
         sc.nextLine();
         switch (choice) {
-            case 1 -> randomchoose();
-            case 2 -> manualchoose();
+            case 1 -> {
+                randomchoose();
+                start("Player");
+            }
+            case 2 -> {
+                manualchoose();
+                start("Player");
+            }
+            case 3 -> twoplayer();
         }
-        start();
     }
+
     public void randomchoose(){
         Random rand = new Random();
         word.setWord(words[rand.nextInt(words.length)]);
@@ -30,19 +34,20 @@ public class Game {
         System.out.println("Enter a word: ");
         word.setWord(sc.nextLine());
     }
-    public void start(){
+    public void start(String playerName){
+        answer.setLength(0); // پاک‌سازی پاسخ قبلی
         initstring();
         int wrongguess = 0;
         while(wrongguess != 5 && !word.getWord().contentEquals(answer) ){
             printman(wrongguess);
-            System.out.println("Enter a word: ");
-            char guess = sc.nextLine().charAt(0);
+            System.out.println(playerName + ", enter a letter: ");
+            char guess = sc.nextLine().toLowerCase().charAt(0);
             while(!validguess(guess)){
                 System.out.print("Invalid guess\nTry again: ");
-                guess = sc.nextLine().charAt(0);
+                guess = sc.nextLine().toLowerCase().charAt(0);
             }
             if (duplicate(guess)){
-                System.out.println("You cannot have duplicate word!");
+                System.out.println("You cannot have duplicate letter!");
                 wrongguess++;
                 continue;
             }
@@ -53,14 +58,14 @@ public class Game {
                 System.out.println("Correct");
             }
         }
+        printman(wrongguess);
         if(word.getWord().contentEquals(answer)){
-            printman(wrongguess);
-            System.out.println("Congratulations! You won!");
+            System.out.println("Congratulations " + playerName + "! You won!");
         }else{
-            printman(wrongguess);
-            System.out.println("Sorry, you lost!");
+            System.out.println("Sorry " + playerName + ", you lost!");
         }
     }
+
     public void printman(int x){
         switch (x) {
             case 0 : {
@@ -165,5 +170,11 @@ public class Game {
                 duplicate = true;
         }
         return duplicate;
+    }
+    public void twoplayer() {
+        System.out.println("Player 1, enter a word: ");
+        word.setWord(sc.nextLine().toLowerCase());
+        for (int i = 0; i < 50; i++) System.out.println();//برای ندیدن کلمه
+        start("Player 2");
     }
 }
