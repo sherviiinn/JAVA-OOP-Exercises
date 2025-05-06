@@ -8,7 +8,7 @@ public class controllMain {
         restureant.setMenu(new Menu());
         restureant.setCustomer(new ArrayList<>());
     }
-    public void start() {
+    public void start() throws InterruptedException {
         Scanner sc = new Scanner(System.in);
         System.out.println("""
                 1.Admin
@@ -23,7 +23,7 @@ public class controllMain {
         }
     }
 
-    public void admin() {
+    public void admin() throws InterruptedException {
         System.out.println("""
                 1.Add Food""");
         Scanner sc = new Scanner(System.in);
@@ -36,7 +36,7 @@ public class controllMain {
         start();
     }
 
-    public void customer() {
+    public void customer() throws InterruptedException {
         Scanner sc = new Scanner(System.in);
         System.out.println("""
                 1.Order Food
@@ -64,6 +64,10 @@ public class controllMain {
             customer.setOrder(order);
             System.out.print("Total Price: ");
             order.total();
+            Thread.sleep(5000);
+            order.setOrderStatus("completed");
+            System.out.println(order.getOrderStatus());
+            System.out.println("Your food is ready");
         } else if (choice == 2) {
             System.out.print("Enter your name: ");
             String name = sc.nextLine();
